@@ -6,8 +6,12 @@ const areaMes = document.querySelector("#message");
 function saveToLocal(event) {
     event.preventDefault();
     const { email, message } = form.elements;
-    localStorage.setItem("LOCALSTORAGE_EMAIL", email.value);
-    localStorage.setItem("LOCALSTORAGE_MESSAGE", message.value);
+    if (email.value !== "" && message.value !== "") {
+        localStorage.setItem("LOCALSTORAGE_EMAIL", email.value);
+        localStorage.setItem("LOCALSTORAGE_MESSAGE", message.value);
+    } else { 
+        return alert("Please enter fields");
+    }
     console.log(localStorage.getItem("LOCALSTORAGE_EMAIL"),
         localStorage.getItem("LOCALSTORAGE_MESSAGE"));
     form.reset();
