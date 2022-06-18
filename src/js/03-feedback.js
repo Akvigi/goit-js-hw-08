@@ -1,14 +1,12 @@
 import throttle from 'lodash.throttle';
 
 const form = document.querySelector(".feedback-form");
-const areaMes = document.querySelector("#message");
+const mail = {}
 
 function saveToLocal() {
     const { email, message } = form.elements;
-    // if (email.value !== "" || message.value !== "") {
-        localStorage.setItem("LOCALSTORAGE_EMAIL", email.value);
-        localStorage.setItem("LOCALSTORAGE_MESSAGE", message.value);
-    // }
+    localStorage.setItem("LOCALSTORAGE_EMAIL", email.value);
+    localStorage.setItem("LOCALSTORAGE_MESSAGE", message.value);
 }
 
 function submitData(event) {
@@ -16,8 +14,11 @@ function submitData(event) {
         return alert("Please enter any field");
     }
     event.preventDefault();
-    console.log(localStorage.getItem("LOCALSTORAGE_EMAIL"),
-        localStorage.getItem("LOCALSTORAGE_MESSAGE"));
+    mail.email = localStorage.getItem("LOCALSTORAGE_EMAIL")
+    mail.message = localStorage.getItem("LOCALSTORAGE_MESSAGE")
+    console.log(mail);
+    localStorage.removeItem("LOCALSTORAGE_EMAIL")
+    localStorage.removeItem("LOCALSTORAGE_MESSAGE")
     form.reset();
 }
 if (localStorage.getItem("LOCALSTORAGE_EMAIL") || localStorage.getItem("LOCALSTORAGE_MESSAGE")) {
